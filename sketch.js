@@ -153,10 +153,6 @@ var startPressed = false
 
 // TODO
 // noise hints towards gateway
-// more mobile friendly
-//   more zoomed
-//   save start being erased on tab close
-
 
 class Serialize {
   constructor() {
@@ -1662,6 +1658,7 @@ class BoardDraw {
 
     this.windowResize()
     this.prevColor = true
+    
   }
   restretch() {
     this.cols = ~~(windowWidth / (this.lw + this.lwp))
