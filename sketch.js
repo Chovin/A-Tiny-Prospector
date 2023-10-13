@@ -151,6 +151,10 @@ var sst = 0
 var sstThreshMult = .75
 var startPressed = false
 
+var audio = false;
+var justStarted = true;
+var mainTheme;
+
 // TODO
 // noise hints towards gateway
 
@@ -1776,6 +1780,10 @@ function windowResized() {
 }
 
 function setup(newWorld) {
+  if (mainTheme) {
+    mainTheme.stop()
+  }
+  mainTheme = new BGM('assets/house_by_the_mine.mp3', true)
   firstMuns = true
   pants = 0
   fetchp = 0
@@ -2272,6 +2280,12 @@ function setTitleDims(title) {
   titleNotify.titleY = titleY
 }
 
+function mousePressed() {
+  if (!audio) {
+    audio = new Sfx()
+  }
+}
+
 function keyPressed() {
   if (!(death || startScreen)) {
     if (keyCode === ENTER || (keyCode === ESCAPE && restartPressedTimes == 0)) {
@@ -2432,7 +2446,6 @@ function draw() {
 
   // start screen
   if (startScreen) {
-    title = 'a tiny prospector.'
     let s = '->'
     let twb = textWidth(s)
     let sx = titleX + textWidth(title) / 2 - twb / 2 - textWidth('.') * .2
@@ -2523,6 +2536,12 @@ function draw() {
     }
     sst += 1
     // ssns.forEach(n => { n.draw() });
+  } else {
+    // game has started
+    if (justStarted) {
+      mainTheme.play()
+      justStarted = false
+    }
   }
 
   // let fr = frameRate()
