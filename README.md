@@ -1,4 +1,4 @@
-# A-Tiny-Prospector
+# a tiny prospector
 a tiny ascii clicker game inspired by Minecraft
 
 Playable on [repl.it](https://a-tiny-prospector.chovin.repl.co)
